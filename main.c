@@ -51,5 +51,6 @@ int soru_ekle()
 
 	fprintf(dosya, "%s", sorular);// dosyaya yazýyor
 	fclose(dosya);//dosyayý kapatýyor
+	
 	return 0;
 }
