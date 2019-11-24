@@ -12,16 +12,15 @@ int main()
 
 {
 
-	menu(); // menu için fonksiyon oluþturup burada çaðýrdýk
+	menu(); // menu leri gosterir. Secilen menu numarasýný "int secim" deðiskenine aktarýr
+	        // ve bu deðiþken main fonksiyonuna dondurulur. 
 
-	switch (secim)
-	{
-	case '1':
-	{
-		soru_ekle();
+	switch (secim){
+		case '1': {
+			soru_ekle();
+		}
+		break;
 
-	}
-	break;
 	}
 
 	return 0;
