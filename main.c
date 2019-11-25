@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<conio.h> // getche için
+#include <locale.h>
 
 
 int soru_ekle(); //soru ekleme fonksiyon tanýmý
@@ -8,26 +9,72 @@ int secim;
 
 char sorular[15];
 
-int main()
+int main(){
+	//setlocale(LC_ALL, "Turkish");
 
-{
+	FILE* dosya;
+	dosya = fopen("sorular.txt", "r");
+	if (dosya == NULL) {
+		puts("############################################################################################\n"
+		 	 "# sorular.txt dosyasi bulunamadi.                                                          #\n"
+		  	 "# sorular.txt dosyasina sahipseniz dosyayi programin bulundugu dizine kopyalabilirsiniz.   #\n"
+			 "#                                                                                          #\n"
+			 "# Devam etmek istemiyorsaniz:                                                              #\n"
+			 "# ' H ' tusuna basarak programdan cikabilirsiniz.                                          #\n"
+			 "#                                                                                          #\n"
+			 "# Devam etmek icin herhangi bir tusa basiniz.                                              #\n"
+			 "#                                                                                          #\n"
+			 "# Devam ederseniz program kendisi 'sorular.txt' dosyasini olusturacaktir!!!                #\n"
+		     "############################################################################################\n");
 
-	menu(); // menu leri gosterir. Secilen menu numarasýný "int secim" deðiskenine aktarýr
-	        // ve bu deðiþken main fonksiyonuna dondurulur. 
+		char cevap = getch();
 
-	switch (secim){
-		case '1': {
-			soru_ekle();
+		switch (cevap) {
+			case 'H':
+				return 0;
+
+			case 'h':
+				return 0;
+
+			default: {
+				FILE* dosya;
+				dosya = fopen("sorular.txt", "w");
+				system("CLS");
+			}
 		}
-		break;
+
 
 	}
 
-	return 0;
-}
 
-int menu()//menu fonksiyonu
-{
+
+	menu(); // ekranda menu numaralarýný gosterir. Secilen menu numarasýný "int secim" deðiskenine aktarýr
+	        // ve bu deðiþken main fonksiyonuna dondurulur. 
+
+	switch (secim) {
+
+	case '1': {
+		system("CLS");
+		soru_ekle();
+	}
+			  break;
+
+	default:
+		system("CLS");
+		
+		puts("#######################################\n"
+			 "# Lutfen gecerli bir secim yapiniz!!! #\n"
+		     "#######################################\n");
+		main();
+	}
+
+	return 0;
+
+} //main sonu
+
+int menu(){//menu fonksiyonu
+
+	
 
 	printf("1. Soru ekle\n");
 	printf("2. Soru sil\n");
@@ -41,15 +88,27 @@ int menu()//menu fonksiyonu
 	return secim;
 
 }
-int soru_ekle()
-{
-	FILE* dosya; // dosya için
-	dosya = fopen("sorular.txt", "w"); // sorular.txt adýnda belge oluþturur w: okuma ve yazma iþlemi yapýlabilir dosya
-	printf("\n soru1:");
-	gets(sorular); // soru giriþi alýyoruz
 
-	fprintf(dosya, "%s", sorular);// dosyaya yazýyor
-	fclose(dosya);//dosyayý kapatýyor
-	
-	return 0;
+int soru_ekle() {
+
+	FILE* dosya;
+	dosya = fopen("sorular.txt", "a"); // sorular.txt adýnda belge oluþturur w: okuma ve yazma iþlemi yapýlabilir dosya
+	printf("\n soru1:");
+	char giris;
+	while (1) {
+		if ((giris = getchar()) == EOF) {  // soru giriþi alýyoruz
+			fclose(dosya);	
+			break;
+			
+		}
+		else {
+			fputc(giris, dosya);
+			
+
+
+		}
+		break;
+	}
+	main();
 }
+	
