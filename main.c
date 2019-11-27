@@ -16,7 +16,7 @@ int main(){
 	dosya = fopen("sorular.txt", "r");
 	if (dosya == NULL) {
 		puts("############################################################################################\n"
-		 	 "# sorular.txt dosyasi bulunamadi.                                                          #\n"
+		 	 "# sorular.txt dosyasi bulunamadý.                                                          #\n"
 		  	 "# sorular.txt dosyasina sahipseniz dosyayi programin bulundugu dizine kopyalabilirsiniz.   #\n"
 			 "#                                                                                          #\n"
 			 "# Devam etmek istemiyorsaniz:                                                              #\n"
